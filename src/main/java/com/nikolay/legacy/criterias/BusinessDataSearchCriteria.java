@@ -1,4 +1,4 @@
-package com.nikolay.legacy.criteria;
+package com.nikolay.legacy.criterias;
 
 import lombok.Builder;
 import lombok.Getter;

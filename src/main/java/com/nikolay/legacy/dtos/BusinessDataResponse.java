@@ -1,17 +1,19 @@
-package com.nikolay.legacy.dto;
+package com.nikolay.legacy.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Бизнес данные")
-public class BusinessDataDto {
+public class BusinessDataResponse {
 
     private Long id;
     private String type;
     private String businessValue;
-    private Long createdAt;
-    private Long updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

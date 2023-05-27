@@ -1,4 +1,4 @@
-package com.nikolay.legacy.dto;
+package com.nikolay.legacy.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ApiModel(description = "Запрос для регистрации нового Сообщения")
-public class BusinessDataRequest {
+@ApiModel(description = "Запрос создания данных")
+public class BusinessDataCreateRequest {
 
     @ApiModelProperty(notes = "Тип данных", dataType = "String", required = true)
     private String type;
