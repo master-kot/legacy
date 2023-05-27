@@ -2,6 +2,7 @@ package com.nikolay.legacy.service;
 
 import com.nikolay.legacy.criteria.BusinessDataSearchCriteria;
 import com.nikolay.legacy.dto.BusinessDataDto;
+import com.nikolay.legacy.dto.BusinessDataRequest;
 import com.nikolay.legacy.mapper.BusinessDataMapper;
 import com.nikolay.legacy.repository.BusinessDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,14 @@ public class BusinessDataService {
                                                             Pageable pageable) {
         return businessDataMapper.mapEntityToDto(
                 businessDataRepository.findAll(eventHasSearchCriteria(criteria), pageable).toList());
+    }
+
+    public BusinessDataDto getById(Long id) {
+        return businessDataMapper.mapEntityToDto(businessDataRepository.findById(id));
+    }
+
+    public BusinessDataDto save(BusinessDataRequest request) {
+        return businessDataMapper.mapEntityToDto(
+                businessDataRepository.save(businessDataMapper.mapRequestToEntity(request)));
     }
 }

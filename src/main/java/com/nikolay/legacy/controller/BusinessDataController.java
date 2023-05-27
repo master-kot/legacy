@@ -2,6 +2,7 @@ package com.nikolay.legacy.controller;
 
 import com.nikolay.legacy.criteria.BusinessDataSearchCriteria;
 import com.nikolay.legacy.dto.BusinessDataDto;
+import com.nikolay.legacy.dto.BusinessDataRequest;
 import com.nikolay.legacy.service.BusinessDataService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class BusinessDataController {
             @ApiResponse(code = 404, message = "Не найдено")
     })
     @GetMapping("")
-    public ResponseEntity<List<BusinessDataDto>> findAllBySearchCriteria(
+    public ResponseEntity<List<BusinessDataDto>> getAllDataBySearchCriteria(
             @ApiParam(value = "Идентификатор") @RequestParam(required = false) Long id,
             @ApiParam(value = "Тип") @RequestParam(required = false) String type,
             @ApiParam(value = "Данные") @RequestParam(required = false) String businessValue,
@@ -50,6 +51,21 @@ public class BusinessDataController {
                 );
     }
 
+    @ApiOperation(value = "Поиск бизнес данных по идентификатору")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Успешно"),
+            @ApiResponse(code = 404, message = "Не найдено")
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<BusinessDataDto> getDataById(@ApiParam("Идентификатор") @PathVariable Long id) {
+        return ResponseEntity.ok(businessDataService.getById(id));
+    }
 
-
+    @ApiOperation(value = "Добавление бизнес данных")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Успешно")})
+    @PostMapping("")
+    public ResponseEntity<BusinessDataDto> postData(
+            @ApiParam(value = "Данные") @RequestBody BusinessDataRequest request) {
+        return ResponseEntity.ok(businessDataService.save(request));
+    }
 }
