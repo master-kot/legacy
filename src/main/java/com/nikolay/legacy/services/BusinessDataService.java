@@ -33,7 +33,7 @@ public class BusinessDataService {
 
     private final BusinessDataRepository businessDataRepository;
     private final BusinessDataMapper businessDataMapper;
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     public List<BusinessDataResponse>  getAllDtoBySearchCriteria(BusinessDataSearchCriteria criteria,
                                                                  Pageable pageable) {

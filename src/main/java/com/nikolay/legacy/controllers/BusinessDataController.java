@@ -14,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.nikolay.legacy.helpers.Constants.DATA_NOT_FOUND;
@@ -38,12 +39,12 @@ public class BusinessDataController {
             @ApiParam(value = "Идентификатор") @RequestParam(required = false) Long id,
             @ApiParam(value = "Тип") @RequestParam(required = false) String type,
             @ApiParam(value = "Данные") @RequestParam(required = false) String businessValue,
-            @ApiParam(value = "Создан") @RequestParam(required = false) Long createdAt,
-            @ApiParam(value = "Обновлен") @RequestParam(required = false) Long updatedAt,
-            @ApiParam(value = "Номер страницы") @RequestParam(required = false, defaultValue = "0")
-                    @DateTimeFormat(pattern = LOCAL_DATE_TIME_PATTERN) Integer pageNumber,
-            @ApiParam(value = "Размер страницы") @RequestParam(required = false, defaultValue = "0")
-                    @DateTimeFormat(pattern = LOCAL_DATE_TIME_PATTERN) Integer pageSize
+            @ApiParam(value = "Создан") @RequestParam(required = false)
+                @DateTimeFormat(pattern = LOCAL_DATE_TIME_PATTERN) LocalDateTime createdAt,
+            @ApiParam(value = "Обновлен") @RequestParam(required = false)
+                @DateTimeFormat(pattern = LOCAL_DATE_TIME_PATTERN) LocalDateTime updatedAt,
+            @ApiParam(value = "Номер страницы") @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
+            @ApiParam(value = "Размер страницы") @RequestParam(required = false, defaultValue = "0") Integer pageSize
     ) {
         return ResponseEntity.ok(
                 businessDataService.getAllDtoBySearchCriteria(
