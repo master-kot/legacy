@@ -33,7 +33,7 @@ public class BusinessDataService {
 
     private final BusinessDataRepository businessDataRepository;
     private final BusinessDataMapper businessDataMapper;
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, MessageDto> kafkaTemplate;
 
     public List<BusinessDataResponse>  getAllDtoBySearchCriteria(BusinessDataSearchCriteria criteria,
                                                                  Pageable pageable) {
@@ -70,7 +70,6 @@ public class BusinessDataService {
     }
 
     private void sendMessage(Long id, EventType action) {
-        kafkaTemplate.send(topicName, new MessageDto(id, action.toString(), Instant.now().getLong(INSTANT_SECONDS))
-                .toString());
+        kafkaTemplate.send(topicName, new MessageDto(id, action.toString(), Instant.now().getLong(INSTANT_SECONDS)));
     }
 }
