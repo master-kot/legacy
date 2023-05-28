@@ -1,7 +1,9 @@
-package com.nikolay.legacy.entity;
+package com.nikolay.legacy.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -23,8 +25,8 @@ public class BusinessData {
     private String businessValue;
 
     @Column(name = "created_at")
-    private Long createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private Long updatedAt;
+    private LocalDateTime updatedAt;
 }
