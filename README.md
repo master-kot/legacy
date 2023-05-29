@@ -10,5 +10,21 @@
 Реализовать REST API поиска по Id
 Выгружать событие в топик кафки при изменении данных
 
+Схема таблицы:
+id                   bigserial
+type                 text         // возможные типы: TYPE1, TYPE2, TYPE3, TYPE4, TYPE5, TYPE6, TYPE7
+business_value       text
+created_at           timestamp
+updated_at           timestamp
+
+ 
+Схема события в топике Kafka:
+ 
+{
+    «id»: 1234567890           // long айдишник в таблице
+    «action»: «CREATE»,        // строка-енам возможны виды: CREATE, UPDATE, DELETE
+    «eventTime»: 1234567890    // long unix-time
+}
+
 Техстек:
 Java 17, Spring Boot 3, PostgreSQL, Kafka
